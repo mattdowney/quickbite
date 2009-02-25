@@ -48,7 +48,6 @@ if (array_key_exists('z', $_GET) && $_GET['z'] == '1')
         $desc = $_GET['title'];
         $notes = $_GET['desc'];
         $tags = array($_GET['tags']);
-        $date = date('Y-m-d H:i:s', time());
     }
 }
 
@@ -113,7 +112,7 @@ if (array_key_exists('z', $_GET) && $_GET['z'] == '1')
 
             if ($create_post)
             {
-                $result = $qb->add_post($url, $desc, $notes, $tags, $date);
+                $result = $qb->add_post($url, $desc, $notes, $tags);
                 if ($result == '1' || $result == '')
                     echo '<script type="text/javascript" charset="utf-8">setTimeout(\'window.close()\', 700);</script><div class="good">Done!</span>';
                 else
