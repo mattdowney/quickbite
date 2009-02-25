@@ -102,17 +102,32 @@ class quick_bite
     
     protected function http_request($cmd)
     {
-        ini_set('user_agent', DELICIOUS_USER_AGENT);
-        $cmd = str_replace('https://', "https://{$this->user}:{$this->pass}@", $cmd);
-        if ($result = @file_get_contents($cmd))
+        if (function_exists('curl_init'))
         {
-            if (strstr($http_response_header[0], '503'))
-                return false;
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_URL, $cmd);
+            curl_setopt($ch, CURLOPT_USERAGENT, DELICIOUS_USER_AGENT);
+            curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, DELICIOUS_CONNECT_TIMEOUT);
+            curl_setopt($ch, CURLOPT_TIMEOUT, DELICIOUS_TRANSFER_TIMEOUT);
+            curl_setopt($ch, CURLOPT_DNS_CACHE_TIMEOUT, DELICIOUS_DNS_TIMEOUT);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
+            curl_setopt($ch, CURLOPT_USERPWD, "$this->user:$this->pass");
             
-            if (strstr($http_response_header[0], '401'))
-                return false;
+            if ($result = curl_exec($ch))
+            {
+                switch (curl_getinfo($ch, CURLINFO_HTTP_CODE))
+                {
+                    case 200:
+                        return $result;
+                        break;
+                    default:
+                        return false;
+                }
+            }
             
-            return $result;
+            curl_close($ch);            
         }
         return false;
     }

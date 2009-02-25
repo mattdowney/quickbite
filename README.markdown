@@ -15,6 +15,8 @@ everything you've added via this tool.
 INSTALL
 -------
 
+quickbite requires you have cURL support installed with PHP. Most hosts do.
+
 * Add appropriate settings in `conf.php`
 * Upload `quickbite` dir to your server somewhere
 * Generate your bookmarklet by visiting the location you uploaded to + `/bookmarklet.php`
@@ -37,8 +39,8 @@ is included in licensing notes where appropriate.
 
 Software License Agreement (BSD License)
 
-Copyright (C) 2005-2008, Edward Eliot.
-Copyright (C) 2009, Garrett Murray.
+Copyright (C) 2005-2008, Edward Eliot.  
+Copyright (C) 2009, Garrett Murray.  
 All rights reserved.
    
 Redistribution and use in source and binary forms, with or without
