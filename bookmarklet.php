@@ -85,7 +85,7 @@ $current_url .= (substr($current_url, -1) == '/' ? '' : '/');
         
         <p>We think quickbite is installed at: <b><?php echo $current_url; ?></b>. If that's incorrect, you'll need to modify the code in this bookmarklet appropriately.</p>
         
-        <p><b>Drag this bookmarklet to your browser's bookmarks bar:</b> <a class="large" href="javascript:window.open('<?php echo $current_url ?>?z=1&desc='+encodeURIComponent(''+(window.getSelection?window.getSelection():document.getSelection?document.getSelection():document.selection.createRange().text)).replace(/ /g,'+')+'&mp=<?php echo md5(DELICIOUS_PASS) ?>&tags=quickbite&u=<?php echo DELICIOUS_USER ?>&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)+'','Saving to Del.icio.us...','toolbar=0,resizable=0,status=1,width=240,height=140')">quickbite</a></p>
+        <p><b>Drag this bookmarklet to your browser's bookmarks bar:</b> <a class="large" href="javascript:window.open('<?php echo $current_url ?>?z=1&desc='+encodeURIComponent(''+(window.getSelection?window.getSelection():document.getSelection?document.getSelection():document.selection.createRange().text)).replace(/ /g,'+')+'&mp=<?php echo md5(DELICIOUS_PASS) ?>&tags=quickbite&u=<?php echo DELICIOUS_USER ?>&url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)+'','Saving to Del.icio.us...','toolbar=0,resizable=0,status=1,width=240,height=140');void(0);">quickbite</a></p>
         
         <p class="imp"><b>NOTE:</b> When you're done with this file, please either delete it or rename it to something cryptic. If someone were to access this page, they could use it to post to your Del.icio.us account.</p>
         
